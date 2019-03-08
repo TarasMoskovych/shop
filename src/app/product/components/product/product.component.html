@@ -1,0 +1,20 @@
+<div class="col s12 m3">
+  <div class="card">
+    <div class="card-image">
+      <img class="product-image" [src]="product.photo">
+      <span class="card-title">{{ product.name }}</span>
+      <a *ngIf="product.isAvailable" class="btn-floating halfway-fab waves-effect waves-light blue">
+        <i (click)="onBuy(product)" class="material-icons">add_shopping_cart</i>
+      </a>
+    </div>
+    <div class="card-content">
+      <p>{{ product.price }}</p> <br>
+      <p>{{ product.description }}</p> <br>
+      <p>{{ product.category }}</p> <br>
+      <p>{{ product.isAvailable }}</p>
+    </div>
+    <div class="card-action center">
+      <button (click)="onAddToCart(product)" [disabled]="!product.isAvailable" class="waves-effect waves-light btn">Add to cart</button>
+    </div>
+  </div>
+</div>
