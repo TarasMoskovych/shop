@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product, Category } from './../models/product.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +8,7 @@ export class Products {
 
   constructor() { }
 
-  getItems(): Array<Product> {
+  getProducts(): Array<Product> {
     return [
       new Product(
         'Xiaomi Redmi Note 6 Pro',

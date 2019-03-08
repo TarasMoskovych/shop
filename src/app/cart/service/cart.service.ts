@@ -15,4 +15,12 @@ export class CartService {
   dispatchData(data: Product) {
     this.channel.next(data);
   }
+
+  calculateTotalPrice(products: Array<Product>) {
+    return products.reduce((acc: number, current: any) => acc + current.product.price * +current.quantity, 0);
+  }
+
+  calculateTotalItems(products: Array<Product>) {
+    return products.length;
+  }
 }

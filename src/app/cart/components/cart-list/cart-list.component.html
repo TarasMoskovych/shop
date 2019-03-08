@@ -1,0 +1,24 @@
+<div *ngIf="items.length === 0; else showItems" class="center">
+  <h5 class="blue-text">Cart is empty!</h5>
+  <hr />
+</div>
+
+<ng-template #showItems>
+  <h4>Items: {{ count }}</h4>
+  <h4>Sum: {{ sum }}</h4>
+
+  <div class="row">
+    <div class="col s6">
+      <ul class="collection">
+        <app-cart-item
+          *ngFor="let item of items; let idx = index"
+          [item]="item.product"
+          [quantity]="item.quantity"
+          [index]="idx"
+          (updateQuantity)="onUpdateQuantity($event)"
+          (remove)="onRemove($event)"
+        ></app-cart-item>
+      </ul>
+    </div>
+  </div>
+</ng-template>
