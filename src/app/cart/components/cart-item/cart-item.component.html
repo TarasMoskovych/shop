@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col sm6">
       {{ index + 1 }}.
-      <b>{{ item.name }}</b> ({{ quantity }}) item(s)
+      <b>{{ item.key.name }}</b> ({{ item.value }}) item(s)
 
       <div class="row">
         <div class="input-field col s6">
@@ -13,16 +13,16 @@
             class="validate"
             placeholder="1"
             min="0"
-            [value]="quantity"
+            [value]="item.value"
             (input)="onUpdateQuantity(item, input.value)"
           />
-          {{ item.price | currency }} <br />
+          {{ item.key.price | currency }} <br />
         </div>
       </div>
     </div>
 
     <div class="col sm6 cart-img">
-      <img [src]="item.photo" [alt]="item.name" />
+      <img [src]="item.key.photo" [alt]="item.key.name" />
     </div>
 
     <a class="btn-floating waves-effect waves-light red">

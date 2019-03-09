@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { CartService } from '../../service/cart.service';
-import { Product } from './../../../product/models/product.model';
+import { CartService } from '../../services';
+import { ICartItem, CartSummary } from './../../models';
+import { Product } from './../../../product/models';
 
 @Component({
   selector: 'app-cart',
@@ -10,17 +11,18 @@ import { Product } from './../../../product/models/product.model';
   styleUrls: ['./cart-list.component.css']
 })
 export class CartComponent implements OnInit, OnDestroy {
-  constructor(private cartService: CartService) { }
-
-  items = [];
-  count = 0;
-  sum = 0;
+  items = new Map();
+  summary: CartSummary;
   sub$: Subscription;
 
+  constructor(private cartService: CartService) { }
+
   ngOnInit() {
+    this.items = this.cartService.getItems();
+    this.summary = this.cartService.getCartSummary();
+
     this.sub$ = this.cartService.channel$.subscribe((product: Product) => {
-      this.addProduct(product);
-      this.sum = this.cartService.calculateTotalPrice(this.items);
+      this.cartService.addItem(product);
     });
   }
 
@@ -28,29 +30,11 @@ export class CartComponent implements OnInit, OnDestroy {
     this.sub$.unsubscribe();
   }
 
-  onUpdateQuantity({ product, quantity }) {
-    if (+quantity === 0) {
-      this.removeProduct(product);
-      return;
-    }
-
-    this.items.find(item => item.product === product).quantity = quantity;
-    this.sum = this.cartService.calculateTotalPrice(this.items);
+  onUpdateQuantity({ item, quantity }) {
+    this.cartService.updateQuantity(item, +quantity);
   }
 
-  onRemove(product: Product) {
-    this.removeProduct(product);
-    this.sum = this.cartService.calculateTotalPrice(this.items);
-    this.count = this.cartService.calculateTotalItems(this.items);
-  }
-
-  private addProduct(product: Product) {
-    const tempProduct = this.items.find(item => item.product === product);
-    tempProduct ? tempProduct.quantity++ : this.items.push({ product, quantity: 1 });
-    this.count = this.cartService.calculateTotalItems(this.items);
-  }
-
-  private removeProduct(product: Product) {
-    this.items.splice(this.items.indexOf(product), 1);
+  onRemove(item: ICartItem) {
+    this.cartService.removeItem(item);
   }
 }
