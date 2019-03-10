@@ -1,9 +1,14 @@
 import { Component, OnInit, InjectionToken, Inject, Optional, Host } from '@angular/core';
 
-import { LocalStorageService, GeneratorService, ConfigOptionsService, ConstantsService } from './../../../shared/services';
+import {
+  LocalStorageService,
+  GeneratorService,
+  ConfigOptionsService,
+  ConstantsService,
+  Sequence,
+  SequenceNFactory
+} from './../../../shared/services';
 import { TITLE } from '../../models';
-import { Sequence, SequenceNFactory } from './../../services/generate.factory';
-
 
 const token = new InjectionToken<string>('token');
 

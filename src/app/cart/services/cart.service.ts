@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable, Subscriber } from 'rxjs';
 
 import { Product } from 'src/app/product/models';
 import { ICartItem, CartSummary } from './../models';
@@ -23,8 +23,10 @@ export class CartService {
     this.channel.next(data);
   }
 
-  getItems() {
-    return this.items;
+  getItems(): Observable<Map<Product, number>> {
+    return new Observable<Map<Product, number>>((observer: Subscriber<Map<Product, number>>) => {
+      observer.next(this.items);
+    });
   }
 
   getCartSummary() {
@@ -47,6 +49,7 @@ export class CartService {
     }
 
     this.recalculateTotals(this.items);
+    return new Map(this.items);
   }
 
   updateQuantity(item: ICartItem, quantity: number) {
@@ -59,6 +62,7 @@ export class CartService {
     }
 
     this.recalculateTotals(this.items);
+    return new Map(this.items);
   }
 
   clearCart() {
@@ -69,6 +73,7 @@ export class CartService {
     this.items.delete(item.key);
 
     this.recalculateTotals(this.items);
+    return new Map(this.items);
   }
 
   recalculateTotalPrice(items: Map<Product, number>) {

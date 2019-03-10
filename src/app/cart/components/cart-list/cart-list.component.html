@@ -5,13 +5,13 @@
 
 <ng-template #showItems>
   <h4>Items: {{ summary.count }}</h4>
-  <h4>Sum: {{ summary.totalPrice }}</h4>
+  <h4>Sum: {{ summary.totalPrice | currency }}</h4>
 
   <div class="row">
     <div class="col s6">
       <ul class="collection">
         <app-cart-item
-          *ngFor="let item of items | keyvalue; let idx = index"
+          *ngFor="let item of items | orderBy : 'name' : false | keyvalue; let idx = index"
           [item]="item"
           [index]="idx"
           (updateQuantity)="onUpdateQuantity($event)"

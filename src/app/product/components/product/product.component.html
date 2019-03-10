@@ -8,9 +8,9 @@
       </a>
     </div>
     <div class="card-content">
-      <p>{{ product.price }}</p> <br>
+      <p>{{ product.price | currency }}</p> <br>
       <p>{{ product.description }}</p> <br>
-      <p>{{ product.category }}</p> <br>
+      <p>{{ product.category | uppercase }}</p> <br>
       <p>{{ product.isAvailable }}</p>
     </div>
     <div class="card-action center">
