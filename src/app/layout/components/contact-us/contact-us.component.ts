@@ -8,7 +8,8 @@ import {
   Sequence,
   SequenceNFactory
 } from './../../../shared/services';
-import { TITLE } from '../../models';
+
+import { TITLE } from './../../../shared/models';
 
 const token = new InjectionToken<string>('token');
 

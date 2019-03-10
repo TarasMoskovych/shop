@@ -6,6 +6,8 @@ import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './layout/layout.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +16,9 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     ProductModule,
-    CartModule
+    CartModule,
+    LayoutModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

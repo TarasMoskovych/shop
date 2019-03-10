@@ -1,0 +1,25 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <div class="container">
+        <a routerLink="/" class="brand-logo" #appTitle></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li routerLinkActive="active">
+            <a routerLink="/products">Products</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/contact-us">Contact Us</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/cart">
+              <span class="quantity">
+                <sup>{{ quantity }}</sup>
+              </span>
+              <i class="material-icons left">add_shopping_cart</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

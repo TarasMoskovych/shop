@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ClickDirective, HoverDirective } from './directives';
 import { OrderByPipe } from './pipes';
 
@@ -9,7 +8,6 @@ import { OrderByPipe } from './pipes';
   declarations: [
     HoverDirective,
     ClickDirective,
-    ContactUsComponent,
     OrderByPipe
   ],
   imports: [
@@ -18,7 +16,6 @@ import { OrderByPipe } from './pipes';
   exports: [
     HoverDirective,
     ClickDirective,
-    ContactUsComponent,
     OrderByPipe
   ]
 })
