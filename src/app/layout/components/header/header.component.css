@@ -3,3 +3,9 @@
   position: relative;
   left: -10px;
 }
+
+.minicart {
+  margin-left: -55px;
+  position: absolute;
+  top: 75px;
+}

@@ -82,12 +82,16 @@ export class CartService {
       Array.from(items.entries()).forEach(item => total += item[0].price * item[1]);
 
       this.setTotalPrice(total);
+    } else {
+      this.setTotalPrice(0);
     }
   }
 
   recalculateTotalItems(items: Map<Product, number>) {
     if (!this.isEmptyItems()) {
       this.setCount(Array.from(items.values()).reduce((acc, current) => acc + current));
+    } else {
+      this.setCount(0);
     }
   }
 

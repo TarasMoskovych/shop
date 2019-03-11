@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Product } from './../../models';
 import { Products } from './../../services';
@@ -10,7 +11,11 @@ import { CartService } from './../../../cart/services';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  constructor(private productsService: Products, private cartService: CartService) { }
+  constructor(
+    private productsService: Products,
+    private cartService: CartService,
+    private router: Router
+  ) { }
 
   products = [];
 
@@ -20,5 +25,9 @@ export class ProductListComponent implements OnInit {
 
   onAddToCart(product: Product) {
     this.cartService.dispatchData(product);
+  }
+
+  onProductClick(product: Product) {
+    this.router.navigate(['products', product.id]);
   }
 }

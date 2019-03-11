@@ -7,7 +7,7 @@ import {
   ConstantsService,
   Sequence,
   SequenceNFactory
-} from './../../../shared/services';
+} from './../../../core/services';
 
 import { TITLE } from './../../../shared/models';
 

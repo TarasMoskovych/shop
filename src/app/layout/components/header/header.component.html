@@ -10,13 +10,25 @@
           <li routerLinkActive="active">
             <a routerLink="/contact-us">Contact Us</a>
           </li>
-          <li routerLinkActive="active">
+          <!-- <li routerLinkActive="active">
             <a routerLink="/cart">
               <span class="quantity">
-                <sup>{{ quantity }}</sup>
+                <sup>{{ summary.count }}</sup>
               </span>
               <i class="material-icons left">add_shopping_cart</i>
             </a>
+          </li> -->
+
+          <li routerLinkActive="active">
+            <a [routerLink]="[{ outlets: { view: ['minicart'] } }]">
+              <span class="quantity">
+                <sup>{{ summary.count }}</sup>
+              </span>
+              <i class="material-icons left">add_shopping_cart</i>
+            </a>
+          </li>
+          <li class="minicart">
+            <router-outlet name="view"></router-outlet>
           </li>
         </ul>
       </div>

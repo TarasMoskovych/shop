@@ -11,17 +11,22 @@ import { Product } from './../../models';
 export class ProductComponent implements OnInit {
   @Input() product: Product;
   @Output() addToCart: EventEmitter<Product> = new EventEmitter<Product>();
-
-  constructor() { }
+  @Output() productClick: EventEmitter<Product> = new EventEmitter<Product>();
 
   ngOnInit() {
   }
 
-  onBuy(product: Product): void {
-    console.log(`Buy ${product.name}`);
+  onProductClick(product: Product) {
+    this.productClick.emit(product);
   }
 
-  onAddToCart(product: Product): void {
+  onBuy(event: MouseEvent, product: Product): void {
+    event.stopPropagation();
+    this.addToCart.emit(product);
+  }
+
+  onAddToCart(event: MouseEvent, product: Product): void {
+    event.stopPropagation();
     this.addToCart.emit(product);
   }
 }

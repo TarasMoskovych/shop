@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { CoreModule } from './../../core/core.module';
-import { Configs } from './../models';
+import { Configs } from 'src/app/shared';
 
 @Injectable({
   providedIn: CoreModule

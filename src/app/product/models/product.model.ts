@@ -9,6 +9,7 @@ export enum Category {
 }
 
 interface IProduct {
+  id: number;
   name: string;
   description: string;
   price: number;
@@ -18,6 +19,7 @@ interface IProduct {
 }
 
 export class Product implements IProduct {
+  id: number;
   name: string;
   description: string;
   price: number;
@@ -25,7 +27,8 @@ export class Product implements IProduct {
   isAvailable: boolean;
   photo?: string;
 
-  constructor(name: string, description: string, price: number, category: Category, isAvailable: boolean, photo?: string) {
+  constructor(id: number, name: string, description: string, price: number, category: Category, isAvailable: boolean, photo?: string) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.price = price;
