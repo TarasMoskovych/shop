@@ -10,19 +10,10 @@
           <li routerLinkActive="active">
             <a routerLink="/contact-us">Contact Us</a>
           </li>
-          <!-- <li routerLinkActive="active">
-            <a routerLink="/cart">
-              <span class="quantity">
-                <sup>{{ summary.count }}</sup>
-              </span>
-              <i class="material-icons left">add_shopping_cart</i>
-            </a>
-          </li> -->
-
           <li routerLinkActive="active">
-            <a [routerLink]="[{ outlets: { view: ['minicart'] } }]">
+            <a [routerLink]="[{ outlets: { view: ['minicart'] } }]" (click)="onShoppingCartToggle()">
               <span class="quantity">
-                <sup>{{ summary.count }}</sup>
+                <sup>{{ summary.count > 100 ? '100+' : summary.count }}</sup>
               </span>
               <i class="material-icons left">add_shopping_cart</i>
             </a>

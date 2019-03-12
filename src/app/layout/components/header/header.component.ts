@@ -1,9 +1,10 @@
-import { Subscription } from 'rxjs';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
-import { CartService } from './../../../cart/services';
+import { MinicartToggleService } from './../../../core';
+import { CartService, CartSummary } from './../../../cart';
 import { Product } from 'src/app/product';
-import { CartSummary } from './../../../cart/models';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +20,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   sub$: Subscription;
   items$: Subscription;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router, private minicartService: MinicartToggleService) { }
 
   ngOnInit() {
-    this.items$ = this.cartService.getItems().subscribe((data: Map<Product, number>) => {
-      this.items = data;
-    });
-
     this.summary = this.cartService.getCartSummary();
 
     this.sub$ = this.cartService.channel$.subscribe((product: Product) => {
@@ -35,5 +32,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.title.nativeElement.textContent = 'Shop App';
+  }
+
+  onShoppingCartToggle() {
+    if (this.minicartService.isMinicartShown) {
+      this.router.navigate([{ outlets: { view: null } }]);
+    }
   }
 }

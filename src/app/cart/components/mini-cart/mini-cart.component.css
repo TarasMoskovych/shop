@@ -1,5 +1,29 @@
 .layout {
-  height: 400px;
   width: 320px;
-  background-color: violet;
+  background-color: #EE6E73;
+}
+
+.wrapper {
+  max-height: 280px;
+  overflow: auto;
+}
+
+.product-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.cart-title {
+  display: flex;
+  justify-content: center;
+}
+
+.clear-cart {
+  margin-left: 10px;
+}
+
+.clear-cart:hover {
+  cursor: pointer;
+  color: black;
+  transition: .4s;
 }

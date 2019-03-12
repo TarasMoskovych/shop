@@ -24,9 +24,4 @@ export class ProductComponent implements OnInit {
     event.stopPropagation();
     this.addToCart.emit(product);
   }
-
-  onAddToCart(event: MouseEvent, product: Product): void {
-    event.stopPropagation();
-    this.addToCart.emit(product);
-  }
 }

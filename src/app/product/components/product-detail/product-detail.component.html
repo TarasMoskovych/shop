@@ -7,7 +7,6 @@
       {{ product.name }}<i class="material-icons right">more_vert</i>
     </span>
     <p class="blue-text">{{ product.price | currency }}</p>
-    <p>{{ product.isAvailable }}</p>
   </div>
   <div class="card-reveal">
     <span class="card-title grey-text text-darken-4">
@@ -16,12 +15,33 @@
     </span>
     <p>{{ product.description }}</p>
   </div>
-  <div class="card-action center">
-    <button
-      [disabled]="!product.isAvailable"
-      class="waves-effect waves-light btn"
-    >
-      Add to cart
-    </button>
+  <div
+    *ngIf="!product.isAvailable"
+    class="card-action product-availability center"
+  >
+    <i class="material-icons red-text">close</i>Unavailable
+  </div>
+  <div *ngIf="product.isAvailable" class="card-action center">
+    <div class="row">
+      <div class="col offset-s3 s3 offset-m4 m2">
+        <input
+          #quantity
+          type="number"
+          min="1"
+          value="1"
+          placeholder="Quantity"
+          class="product-quantity"
+        />
+      </div>
+      <div class="col">
+        <button
+          (click)="onAddToCart(quantity.value)"
+          [disabled]="!product.isAvailable"
+          class="waves-effect waves-light btn"
+        >
+          Add to cart
+        </button>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { pipe } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
-import { Product } from 'src/app/product/models';
+import { Product } from 'src/app/product';
 import { Products } from '../../services';
+import { CartService } from 'src/app/cart';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,10 +13,17 @@ import { Products } from '../../services';
 export class ProductDetailComponent implements OnInit {
   product: Product;
 
-  constructor(private productService: Products, private route: ActivatedRoute) { }
+  constructor(
+    private productService: Products,
+    private route: ActivatedRoute,
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
     this.product = this.productService.getProductById(this.route.snapshot.paramMap.get('productId'));
   }
 
+  onAddToCart(quantity: string) {
+    this.cartService.addItem(this.product, +quantity);
+  }
 }

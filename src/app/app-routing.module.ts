@@ -10,10 +10,10 @@ const routes: Routes = [
     path: 'products',
     component: ProductListComponent
   },
-  // {
-  //   path: 'cart',
-  //   component: CartComponent
-  // },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
   {
     path: 'minicart',
     component: MiniCartComponent,

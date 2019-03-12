@@ -1,5 +1,36 @@
 <div class="layout right">
-  <p>
-    mini-cart works!
-  </p>
+  <ng-container *ngIf="(cartService.getItems() | async) as items">
+    <div class="center" *ngIf="items.size === 0; else showItemsBlock">
+      Cart is empty
+    </div>
+
+    <ng-template #showItemsBlock>
+      <div class="center cart-title">
+        Items: {{ summary.count }}, sum {{ summary.totalPrice | currency }}
+        <i (click)="onClearCart()" class="large material-icons clear-cart">remove_shopping_cart</i>
+      </div>
+      <ul class="collection with-header wrapper">
+        <li
+          *ngFor="let item of (cartService.getItems() | async | keyvalue)"
+          class="collection-item"
+        >
+          <div>
+            <span class="black-text">
+              {{ item.value }} item(s) * {{ item.key.price | currency }}:
+              <span
+                class="blue-text product-name"
+                (click)="onProductClick(item.key.id)"
+                >{{ item.key.name }}</span
+              >
+            </span>
+          </div>
+        </li>
+      </ul>
+      <div class="card-action center">
+        <button (click)="onViewCart()" class="waves-effect waves-light btn">
+          View cart
+        </button>
+      </div>
+    </ng-template>
+  </ng-container>
 </div>

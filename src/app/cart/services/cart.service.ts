@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, Subscriber } from 'rxjs';
 
-import { Product } from 'src/app/product/models';
+import { Product } from 'src/app/product';
 import { ICartItem, CartSummary } from './../models';
 
 @Injectable({
@@ -43,7 +43,7 @@ export class CartService {
 
   addItem(product: Product, quantity = 1) {
     if (this.items.has(product)) {
-      this.items.set(product, this.items.get(product) + 1);
+      this.items.set(product, this.items.get(product) + quantity);
     } else {
       this.items.set(product, quantity);
     }
@@ -67,6 +67,7 @@ export class CartService {
 
   clearCart() {
     this.items.clear();
+    this.recalculateTotals(this.items);
   }
 
   removeItem(item: ICartItem) {

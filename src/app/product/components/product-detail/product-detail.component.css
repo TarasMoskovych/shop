@@ -3,6 +3,21 @@
 }
 
 img {
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 340px;
+  margin: 30px auto 0;
+}
+
+.product-availability {
+  display: flex;
+  justify-content: center;
+}
+
+.status {
+  margin-right: 5px;
+}
+
+.product-quantity {
+  text-align: center;
+  position: relative;
+  top: -5px;
 }

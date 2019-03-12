@@ -10,3 +10,12 @@
 .product-image {
   height: 200px;
 }
+
+.product-availability {
+  display: flex;
+  justify-content: center;
+}
+
+.status {
+  margin-right: 5px;
+}
