@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ContactUsComponent } from './layout';
+import { ContactUsComponent, LoginComponent } from './layout';
 import { ProductListComponent } from './product';
 import { MiniCartComponent, CartComponent } from './cart/components';
 
@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'minicart',

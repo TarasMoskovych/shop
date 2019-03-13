@@ -7,13 +7,22 @@
           <li routerLinkActive="active">
             <a routerLink="/products">Products</a>
           </li>
+          <li *ngIf="!isLoggedIn" routerLinkActive="active">
+            <a routerLink="/login">Login</a>
+          </li>
+          <li *ngIf="isLoggedIn">
+            <a (click)="onLogout()">Logout</a>
+          </li>
           <li routerLinkActive="active">
             <a routerLink="/contact-us">Contact Us</a>
           </li>
           <li routerLinkActive="active">
-            <a [routerLink]="[{ outlets: { view: ['minicart'] } }]" (click)="onShoppingCartToggle()">
+            <a
+              [routerLink]="[{ outlets: { view: ['minicart'] } }]"
+              (click)="onShoppingCartToggle()"
+            >
               <span class="quantity">
-                <sup>{{ summary.count > 99 ? '99+' : summary.count }}</sup>
+                <sup>{{ summary.count > 99 ? "99+" : summary.count }}</sup>
               </span>
               <i class="material-icons left">add_shopping_cart</i>
             </a>

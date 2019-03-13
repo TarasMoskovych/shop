@@ -15,8 +15,7 @@ export class CartComponent implements OnInit, OnDestroy {
   summary: CartSummary;
   sub$: Subscription;
   items$: Subscription;
-
- mockData: Map<Product, number>;
+  mockData: Map<Product, number>;
 
   constructor(private cartService: CartService) { }
 
