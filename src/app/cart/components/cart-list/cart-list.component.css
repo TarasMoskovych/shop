@@ -1,0 +1,13 @@
+.cart-list-wrapper {
+  max-height: 71vmin;
+  overflow: auto;
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: center;
+}
+
+.cart-summary h5 {
+  padding: 0 10px;
+}

@@ -16,6 +16,8 @@ export class CartComponent implements OnInit, OnDestroy {
   sub$: Subscription;
   items$: Subscription;
 
+ mockData: Map<Product, number>;
+
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
@@ -28,6 +30,8 @@ export class CartComponent implements OnInit, OnDestroy {
     this.sub$ = this.cartService.channel$.subscribe((product: Product) => {
       this.items = this.cartService.addItem(product);
     });
+
+    this.mockData = new Map(JSON.parse(localStorage.getItem('products')));
   }
 
   ngOnDestroy() {

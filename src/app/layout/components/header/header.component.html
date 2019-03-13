@@ -13,7 +13,7 @@
           <li routerLinkActive="active">
             <a [routerLink]="[{ outlets: { view: ['minicart'] } }]" (click)="onShoppingCartToggle()">
               <span class="quantity">
-                <sup>{{ summary.count > 100 ? '100+' : summary.count }}</sup>
+                <sup>{{ summary.count > 99 ? '99+' : summary.count }}</sup>
               </span>
               <i class="material-icons left">add_shopping_cart</i>
             </a>

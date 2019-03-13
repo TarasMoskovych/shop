@@ -23,7 +23,8 @@ export class ProductDetailComponent implements OnInit {
     this.product = this.productService.getProductById(this.route.snapshot.paramMap.get('productId'));
   }
 
-  onAddToCart(quantity: string) {
-    this.cartService.addItem(this.product, +quantity);
+  onAddToCart(quantity: HTMLInputElement) {
+    this.cartService.addItem(this.product, +quantity.value);
+    quantity.value = '1';
   }
 }

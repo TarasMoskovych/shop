@@ -1,10 +1,15 @@
+.collection {
+  transition: .4s;
+}
+
 .cart-img img {
-  height: 120px;
+  height: 160px;
+  width: 120px;
   border-radius: 5%;
 }
 
 .hover {
-  border: 2px solid black !important;
+  border-color: red;
   cursor: pointer;
-  display: block;
+  transform: scale(1.025);
 }

@@ -48,6 +48,8 @@ export class CartService {
       this.items.set(product, quantity);
     }
 
+    localStorage.setItem('products', JSON.stringify(Array.from(this.items.entries())));
+
     this.recalculateTotals(this.items);
     return new Map(this.items);
   }

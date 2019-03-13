@@ -1,32 +1,32 @@
-<li class="collection-item" appHover>
-  <div class="row">
-    <div class="col sm6">
-      {{ index + 1 }}.
-      <b>{{ item.key.name }}</b> ({{ item.value }}) item(s)
-
+<div class="col s12 m6">
+  <ul class="collection" appHover>
+    <li class="collection-item">
       <div class="row">
-        <div class="input-field col s6">
-          Change quantity:
-          <input
-            #input
-            type="number"
-            class="validate"
-            placeholder="1"
-            min="0"
-            [value]="item.value"
-            (input)="onUpdateQuantity(item, input.value)"
-          />
-          {{ item.key.price | currency }} <br />
+        <div class="col s7">
+          {{ index + 1 }}. <b>{{ item.key.name }}</b> ({{ item.value }}) item(s)
+          <div class="row">
+            <div class="input-field col s5">
+              Change quantity:
+              <input
+                #input
+                type="number"
+                class="validate"
+                placeholder="1"
+                min="0"
+                [value]="item.value"
+                (input)="onUpdateQuantity(item, input.value)"
+              />
+              {{ item.key.price | currency }} <br />
+            </div>
+          </div>
         </div>
+        <div class="col sm6 cart-img">
+          <img [src]="item.key.photo" [alt]="item.key.name" />
+        </div>
+        <a class="btn-floating waves-effect waves-light btn-small red">
+          <i (click)="onRemove(item)" class="material-icons">close</i>
+        </a>
       </div>
-    </div>
-
-    <div class="col sm6 cart-img">
-      <img [src]="item.key.photo" [alt]="item.key.name" />
-    </div>
-
-    <a class="btn-floating waves-effect waves-light red">
-      <i (click)="onRemove(item)" class="material-icons">close</i>
-    </a>
-  </div>
-</li>
+    </li>
+  </ul>
+</div>
