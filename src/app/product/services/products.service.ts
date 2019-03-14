@@ -123,4 +123,28 @@ export class Products {
   getProductById(id: string): Product {
     return this.getProducts().find(p => p.id === +id);
   }
+
+  createProduct(product: Product): void {
+    products.push(product);
+  }
+
+  updateProduct(product: Product): void {
+    const i = products.findIndex(p => p.id === product.id);
+
+    if (i > -1) {
+      products.splice(i, 1, product);
+    }
+  }
+
+  generateId() {
+    return this.getProducts().length + 1;
+  }
+
+  removeProduct(product: Product): void {
+    const i = products.findIndex(p => p.id === product.id);
+
+    if (i > -1) {
+      products.splice(i, 1);
+    }
+  }
 }

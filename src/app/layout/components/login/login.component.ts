@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.authService.login().subscribe(() => {
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/admin/products']);
     });
   }
 

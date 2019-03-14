@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Products } from 'src/app/product/services';
+import { Product } from 'src/app/product';
 
 @Component({
   selector: 'app-manage-products',
@@ -6,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
+  products: Array<Product>;
 
-  constructor() { }
+  constructor(
+    private productService: Products,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.products = this.productService.getProducts();
   }
 
+  onProductClick(product: Product) {
+    this.router.navigate([`admin/products/edit/${product.id}`]);
+  }
+
+  onCreateNewProduct() {
+    this.router.navigate([`admin/products/create`]);
+  }
 }

@@ -1,3 +1,29 @@
-<p>
-  manage-products works!
-</p>
+<div class="center create-product">
+  <button class="waves-effect waves-light btn-small" (click)="onCreateNewProduct()">
+    Create new product
+  </button>
+</div>
+
+<table class="striped centered highlight">
+  <thead>
+    <tr class="tr-th">
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Availability</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let product of products" (click)="onProductClick(product)">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.isAvailable }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,120 @@
+<div class="row form-wrapper">
+  <form class="col s12" (ngSubmit)="onSaveProduct()" #form="ngForm">
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          id="id"
+          type="text"
+          class="validate"
+          name="id"
+          required
+          [disabled]="product.id"
+          [(ngModel)]="product.id"
+        />
+        <label for="id">
+          <ng-container *ngIf="!product.id">Id</ng-container>
+        </label>
+      </div>
+      <div class="input-field col s6">
+        <input
+          id="name"
+          type="text"
+          class="validate"
+          name="name"
+          required
+          [(ngModel)]="product.name"
+        />
+        <label for="name">
+          <ng-container *ngIf="!product.name">Name</ng-container>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          id="description"
+          type="text"
+          class="validate"
+          name="description"
+          required
+          [(ngModel)]="product.description"
+        />
+        <label for="description">
+          <ng-container *ngIf="!product.description">Description</ng-container>
+        </label>
+      </div>
+      <div class="input-field col s6">
+        <input
+          id="price"
+          type="number"
+          class="validate"
+          name="price"
+          required
+          [(ngModel)]="product.price"
+        />
+        <label for="price">
+          <ng-container *ngIf="!product.price">Price</ng-container>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          id="category"
+          type="text"
+          class="validate"
+          name="category"
+          required
+          [(ngModel)]="product.category"
+        />
+        <label for="category">
+          <ng-container *ngIf="!product.category">Category</ng-container>
+        </label>
+      </div>
+      <div class="input-field col s6">
+        <input
+          id="isAvailable"
+          type="text"
+          class="validate"
+          name="isAvailable"
+          required
+          [(ngModel)]="product.isAvailable"
+        />
+        <label for="isAvailable">
+          <ng-container *ngIf="!product.isAvailable">Availability</ng-container>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          id="photo"
+          type="text"
+          class="validate"
+          name="photo"
+          [(ngModel)]="product.photo"
+        />
+        <label for="photo">
+          <ng-container *ngIf="!product.photo">Photo</ng-container>
+        </label>
+      </div>
+    </div>
+    <div class="center">
+      <button type="submit" class="waves-effect waves-light btn-small center">
+        Save
+      </button>
+      <button
+        class="waves-effect waves-light btn-small center yellow"
+        (click)="onGoBack()"
+      >
+        Cancel
+      </button>
+      <button
+        class="waves-effect waves-light btn-small center red"
+        (click)="onRemove()"
+      >
+        Remove
+      </button>
+    </div>
+  </form>
+</div>

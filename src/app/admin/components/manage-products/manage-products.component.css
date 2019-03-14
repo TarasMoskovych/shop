@@ -1,0 +1,16 @@
+table {
+  margin: 10px;
+}
+
+td {
+  padding: 20px;
+}
+
+tr:hover:not(.tr-th) {
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.create-product {
+  margin-top: 20px;
+}

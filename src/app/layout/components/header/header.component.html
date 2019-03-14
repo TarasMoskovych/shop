@@ -10,6 +10,9 @@
           <li *ngIf="!isLoggedIn" routerLinkActive="active">
             <a routerLink="/login">Login</a>
           </li>
+          <li *ngIf="isLoggedIn" routerLinkActive="active">
+            <a routerLink="/admin">Admin</a>
+          </li>
           <li *ngIf="isLoggedIn">
             <a (click)="onLogout()">Logout</a>
           </li>

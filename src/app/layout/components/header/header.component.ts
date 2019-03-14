@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   onLogout() {
+    this.isLoggedIn = false;
     this.authService.logout();
   }
 }

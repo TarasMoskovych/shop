@@ -9,31 +9,39 @@ export enum Category {
 }
 
 interface IProduct {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: Category;
-  isAvailable: boolean;
+  id?: number;
+  name?: string;
+  description?: string;
+  price?: number;
+  category?: Category;
+  isAvailable?: boolean;
   photo?: string;
 }
 
 export class Product implements IProduct {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: Category;
-  isAvailable: boolean;
+  id?: number;
+  name?: string;
+  description?: string;
+  price?: number;
+  category?: Category;
+  isAvailable?: boolean;
   photo?: string;
 
-  constructor(id: number, name: string, description: string, price: number, category: Category, isAvailable: boolean, photo?: string) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.price = price;
-    this.category = category;
-    this.isAvailable = isAvailable;
+  constructor(
+    id?: number,
+    name?: string,
+    description?: string,
+    price?: number,
+    category?: Category,
+    isAvailable?: boolean,
+    photo?: string
+  ) {
+    this.id = id || null;
+    this.name = name || '';
+    this.description = description || '';
+    this.price = price || null;
+    this.category = category || Category.Smartphone;
+    this.isAvailable = isAvailable || true;
     this.photo = photo || defaultPhoto;
   }
 }
