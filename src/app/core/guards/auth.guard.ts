@@ -3,7 +3,10 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   CanActivate,
-  Router
+  Router,
+  CanLoad,
+  Route,
+  UrlSegment
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -14,7 +17,7 @@ import { CoreModule } from './../core.module';
 @Injectable({
   providedIn: CoreModule
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private authService: AuthService,
     private router: Router
@@ -23,6 +26,10 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.checkLogin();
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): boolean | Observable<boolean> | Promise<boolean> {
     return this.checkLogin();
   }
 

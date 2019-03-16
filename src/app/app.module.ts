@@ -9,7 +9,6 @@ import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +19,6 @@ import { AdminModule } from './admin/admin.module';
     ProductModule,
     CartModule,
     LayoutModule,
-    AdminModule,
     AppRoutingModule
   ],
   providers: [],

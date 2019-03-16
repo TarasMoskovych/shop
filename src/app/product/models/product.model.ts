@@ -41,7 +41,7 @@ export class Product implements IProduct {
     this.description = description || '';
     this.price = price || null;
     this.category = category || Category.Smartphone;
-    this.isAvailable = isAvailable || true;
+    this.isAvailable = isAvailable || false;
     this.photo = photo || defaultPhoto;
   }
 }
