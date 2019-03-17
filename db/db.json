@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Samsung Galaxy M20 (Ocean Blue, 4+64GB)",
+      "description": "13MP+5MP ultra-wide dual camera | 8MP f2.0 front camera, 16cm ('6.3') Full HD+ Infinity V Display with 2340x1080 crystal clear resolution (409 PPI), 5000 mAh battery with 3x fast charge | 15W Type-C fast charger in the box, 1.8GHz Exynos 7904 octa-core processor | Android Oreo v8.1 OS",
+      "price": 1934.91,
+      "category": "Fablet",
+      "isAvailable": true,
+      "photo": "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    },
+    {
+      "id": 2,
+      "name": "OnePlus 6T (Mirror Black, 6GB RAM, 128GB Storage)",
+      "description": "Camera: 16+20 MP Dual rear camera with Optical Image Stabilization, Super slow motion, Nightscape and Studio Lighting | 16 MP front camera, Display: 6.41-inch(16.2 cms) Full HD+ Optic AMOLED display with 2340 x 1080 pixels resolution and an 86% screen-to-body ratio, Screen Unlock: In-screen fingerprint sensor. The OnePlus 6T unlocks in 0.34s for a seamless and intuitive unlock experience, Battery : 3700 mAh lithium-polymer battery with Fast Charge technology",
+      "price": 550.98,
+      "category": "Fablet",
+      "isAvailable": true,
+      "photo": "https://quke.ru/UserFiles/Landing/products/58188_photos_0.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Redmi 6 Pro (Black, 3GB RAM, 32GB Storage)",
+      "description": "12MP + 5 MP AI dual camera;5MP front camera, isplay: 14.8 centimetres (5.84-inch) Full HD+ capacitive touchscreen with 2280x1080 pixels and 432 ppi pixel density ,Height: 149.33mm,Width: 71.68mm,Thickness: 8.75mm,Weight: 178g, Battery: 4000 mAH lithium Polymer battery",
+      "price": 130.49,
+      "category": "Smartphone",
+      "isAvailable": true,
+      "photo": "https://sohodream.com.ua/2159-large_default/xiaomi-redmi-6-pro-blue.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Oppo F11 Pro (Aurora Green, 6GB RAM, 64GB Storage)",
+      "description": "48MP+5MP dual rear camera with normal, video, expert, time-lapse, panorama, portrait, slow-motion | 16MP front camera, Memory, Storage and SIM: 6GB RAM | 64GB internal memory expandable up to 256GB | Dual SIM (nano+nano) dual-standby (4G+4G), Android Pie v9.0 operating system with 2.1GHz MediaTek Helio P70 octa core processor, ARM Mali G72",
+      "price": 362.37,
+      "category": "Smartphone",
+      "isAvailable": false,
+      "photo": "https://images-na.ssl-images-amazon.com/images/I/31Ek4EadtTL.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Honnor 8x",
+      "description": "20MP+2MP dual rear camera | 16MP front facing camera, 16.51 centimeters (6.5-inch) display with 2340 x 1080 pixels resolution, Android v8.1 + EMUI8.2 Oreo operating system with 2.2GHz Kirin 710 octa core processor, 3750mAH lithium-polymer battery",
+      "price": 362.37,
+      "category": "Smartphone",
+      "isAvailable": false,
+      "photo": "https://images-na.ssl-images-amazon.com/images/I/31Ek4EadtTL.jpg"
+    }
+  ]
+}

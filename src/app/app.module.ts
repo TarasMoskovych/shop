@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from 'src/app/core/core.module';
@@ -14,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     CoreModule,
     SharedModule,
     ProductModule,

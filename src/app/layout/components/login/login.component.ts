@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 import { AuthService } from './../../../core/services';
 
@@ -18,8 +17,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin() {
-    this.authService.login().subscribe(() => {
+  onLogin(login: string, password: string) {
+    this.authService.login(login, password).subscribe(() => {
       this.router.navigate(['/admin/products']);
     });
   }

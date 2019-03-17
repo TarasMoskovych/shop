@@ -1,6 +1,6 @@
 <div class="row product-container">
   <app-product
-    *ngFor="let product of products"
+    *ngFor="let product of products$ | async"
     [product]="product"
     (addToCart)="onAddToCart($event)"
     (productClick)="onProductClick($event)"

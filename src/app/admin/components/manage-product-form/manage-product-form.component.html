@@ -1,4 +1,4 @@
-<div class="row form-wrapper">
+<div class="row form-wrapper" *ngIf="product">
   <form class="col s12" (ngSubmit)="onSaveProduct()" #form="ngForm">
     <div class="row">
       <div class="input-field col s6">
@@ -81,7 +81,7 @@
           [(ngModel)]="product.isAvailable"
         />
         <label for="isAvailable">
-          <ng-container *ngIf="!product.isAvailable">Availability</ng-container>
+          <ng-container *ngIf="product.isAvailable !== false && product.isAvailable !== true">Availability</ng-container>
         </label>
       </div>
     </div>
