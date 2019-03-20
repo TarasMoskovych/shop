@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ProductHttpService } from 'src/app/product/services';
+import { AppState, ProductsState } from 'src/app/core/+store';
+import * as ProductsActions from './../../../core/+store/products/products.actions';
 import { Product } from 'src/app/product';
 
 @Component({
@@ -11,15 +13,17 @@ import { Product } from 'src/app/product';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
+  productsState$: Observable<ProductsState>;
   products$: Observable<Array<Product>>;
 
   constructor(
-    private productHttpService: ProductHttpService,
+    private store: Store<AppState>,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.products$ = this.productHttpService.getProducts();
+    this.productsState$ = this.store.pipe(select('products'));
+    this.store.dispatch(new ProductsActions.GetProducts());
   }
 
   onProductClick(product: Product) {

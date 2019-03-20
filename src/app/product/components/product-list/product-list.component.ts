@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { Product } from './../../models';
-import { ProductHttpService } from './../../services';
 import { CartService } from './../../../cart';
-import { AppState } from './../../../core/+store/app.state';
-import { ProductsState } from 'src/app/core/+store';
+import { AppState, ProductsState } from 'src/app/core/+store';
+import * as ProductsActions from './../../../core/+store/products/products.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -16,18 +15,16 @@ import { ProductsState } from 'src/app/core/+store';
 })
 export class ProductListComponent implements OnInit {
   constructor(
-    private productHttpService: ProductHttpService,
     private cartService: CartService,
     private router: Router,
     private store: Store<AppState>
   ) { }
 
-  products$: Observable<Array<Product>>;
   productsState$: Observable<ProductsState>;
 
   ngOnInit() {
-    this.products$ = this.productHttpService.getProducts();
-    this.productsState$ = this.store.pipe(select('tasks'));
+    this.productsState$ = this.store.pipe(select('products'));
+    this.store.dispatch(new ProductsActions.GetProducts());
     console.log('Store: ', this.store);
   }
 

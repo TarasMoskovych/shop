@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription, Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 import { Product } from 'src/app/product';
-import { ProductHttpService } from '../../services';
 import { CartService } from 'src/app/cart';
-import { Subscription } from 'rxjs';
+import { AppState, ProductsState } from './../../../core/+store';
+import * as ProductsActions from './../../../core/+store/products/products.actions';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,16 +17,23 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   sub$: Subscription;
 
+  productsState$: Observable<ProductsState>;
+
   constructor(
-    private productHttpService: ProductHttpService,
     private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
-    this.sub$ = this.productHttpService
-      .getProduct(+this.route.snapshot.paramMap.get('productId'))
-      .subscribe((product: Product) => this.product = product);
+    this.productsState$ = this.store.pipe(select('products'));
+
+    this.sub$ = this.productsState$.subscribe(productsState => this.product = productsState.selectedProduct);
+    const id = +this.route.snapshot.paramMap.get('productId');
+
+    if (id) {
+      this.store.dispatch(new ProductsActions.GetProduct(+id));
+    }
   }
 
   ngOnDestroy() {

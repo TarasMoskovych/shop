@@ -2,12 +2,16 @@ import { Product, Category } from './../../../product';
 
 export interface ProductsState {
   data: ReadonlyArray<Product>;
+  selectedProduct: Readonly<Product>;
+  readonly loading: boolean;
+  readonly loaded: boolean;
+  readonly error: Error | string;
 }
 
 export const initialProductsState: ProductsState = {
-    data: [
-      new Product(1, 'Name', 'Description', 100, Category.Fablet, true),
-      new Product(1, 'Name2', 'Description', 200, Category.Fablet, true),
-      new Product(1, 'Name3', 'Description', 300, Category.Fablet, false)
-    ]
+    data: [],
+    selectedProduct: null,
+    loading: false,
+    loaded: false,
+    error: null
 };

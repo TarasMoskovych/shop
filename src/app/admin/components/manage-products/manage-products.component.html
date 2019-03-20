@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let product of products$ | async" (click)="onProductClick(product)">
+    <tr *ngFor="let product of (productsState$ | async).data" (click)="onProductClick(product)">
       <td>{{ product.id }}</td>
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>

@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
+import { AppState, ProductsState } from 'src/app/core/+store';
 import { Product } from 'src/app/product';
 import { ProductHttpService } from './../../../product/services';
-import { Subscription } from 'rxjs';
+import * as ProductsActions from './../../../core/+store/products/products.actions';
 
 @Component({
   selector: 'app-manage-product-form',
@@ -12,23 +15,26 @@ import { Subscription } from 'rxjs';
 })
 export class ManageProductFormComponent implements OnInit, OnDestroy {
   product: Product;
+  productId: number;
   isCreated = true;
 
-  getProduct$: Subscription;
-  saveProduct$: Subscription;
-  deleteProduct$: Subscription;
+  productsState$: Observable<ProductsState>;
+  sub$: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private productHttpService: ProductHttpService,
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit() {
-    const id = +this.activatedRoute.snapshot.paramMap.get('productId');
+    this.productsState$ = this.store.pipe(select('products'));
+    this.productId = +this.activatedRoute.snapshot.paramMap.get('productId');
 
-    if (id) {
-      this.getProduct$ = this.productHttpService.getProduct(id).subscribe(product => this.product = product);
+    if (this.productId) {
+      this.sub$ = this.productsState$.subscribe(productsState => this.product = productsState.selectedProduct);
+      this.store.dispatch(new ProductsActions.GetProduct(this.productId));
       this.isCreated = false;
     } else {
       this.product = new Product();
@@ -37,27 +43,21 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.getProduct$) { this.getProduct$.unsubscribe(); }
-    if (this.saveProduct$) { this.saveProduct$.unsubscribe(); }
-    if (this.deleteProduct$) { this.deleteProduct$.unsubscribe(); }
+    if (this.sub$) { this.sub$.unsubscribe(); }
   }
 
   onSaveProduct() {
     const product = { ...this.product };
-    const method = !this.isCreated ? 'updateProduct' : 'createProduct';
-    this.saveProduct$ = this.productHttpService[method](product)
-      .subscribe(
-        () => this.onGoBack(),
-        error => console.log(error)
-      );
+
+    if (this.productId) {
+      this.store.dispatch(new ProductsActions.UpdateProduct(product));
+    } else {
+      this.store.dispatch(new ProductsActions.CreateProduct(product));
+    }
   }
 
   onRemove() {
-    this.deleteProduct$ = this.productHttpService.deleteProduct(this.product)
-      .subscribe(
-        () => this.onGoBack(),
-        error => console.log(error)
-      );
+    this.store.dispatch(new ProductsActions.DeleteProduct(this.product));
   }
 
   onGoBack(): void {
