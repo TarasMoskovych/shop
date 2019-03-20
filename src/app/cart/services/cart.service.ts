@@ -42,8 +42,12 @@ export class CartService {
   }
 
   addItem(product: Product, quantity = 1) {
-    if (this.items.has(product)) {
-      this.items.set(product, this.items.get(product) + quantity);
+    const key = this.checkForDuplicates(product);
+
+    if (key) {
+      const value = this.items.get(key);
+      this.items.delete(key);
+      this.items.set(product, value + quantity);
     } else {
       this.items.set(product, quantity);
     }
@@ -105,5 +109,9 @@ export class CartService {
 
   isEmptyItems() {
     return this.items.size === 0;
+  }
+
+  private checkForDuplicates(product: Product) {
+    return Array.from(this.items.keys()).find(item => product.id === item.id);
   }
 }
