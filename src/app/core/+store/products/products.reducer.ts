@@ -55,9 +55,7 @@ export function productsReducer(state = initialProductsState, action: ProductsAc
       const product = { ...action.payload as Product };
       const data = [...state.data];
       const index = data.findIndex(p => p.id === product.id);
-
       data[index] = product;
-
       return { ...state, data };
     }
 

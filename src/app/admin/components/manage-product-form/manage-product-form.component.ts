@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { AppState, ProductsState } from 'src/app/core/+store';
+import { AppState, getProductsData, getSelectedProduct } from 'src/app/core/+store';
 import { Product } from 'src/app/product';
 import { ProductHttpService } from './../../../product/services';
 import * as ProductsActions from './../../../core/+store/products/products.actions';
@@ -18,7 +18,7 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
   productId: number;
   isCreated = true;
 
-  productsState$: Observable<ProductsState>;
+  products$: Observable<ReadonlyArray<Product>>;
   sub$: Subscription;
 
   constructor(
@@ -29,11 +29,11 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.productsState$ = this.store.pipe(select('products'));
+    this.products$ = this.store.pipe(select(getProductsData));
     this.productId = +this.activatedRoute.snapshot.paramMap.get('productId');
 
     if (this.productId) {
-      this.sub$ = this.productsState$.subscribe(productsState => this.product = productsState.selectedProduct);
+      this.sub$ = this.store.pipe(select(getSelectedProduct)).subscribe(product => this.product = product);
       this.store.dispatch(new ProductsActions.GetProduct(this.productId));
       this.isCreated = false;
     } else {

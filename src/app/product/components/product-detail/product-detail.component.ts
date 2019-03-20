@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 
 import { Product } from 'src/app/product';
 import { CartService } from 'src/app/cart';
-import { AppState, ProductsState } from './../../../core/+store';
+import { AppState, getProductsData, getSelectedProduct } from './../../../core/+store';
 import * as ProductsActions from './../../../core/+store/products/products.actions';
 
 @Component({
@@ -16,8 +16,7 @@ import * as ProductsActions from './../../../core/+store/products/products.actio
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   sub$: Subscription;
-
-  productsState$: Observable<ProductsState>;
+  products$: Observable<ReadonlyArray<Product>>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +25,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.productsState$ = this.store.pipe(select('products'));
-
-    this.sub$ = this.productsState$.subscribe(productsState => this.product = productsState.selectedProduct);
+    this.products$ = this.store.pipe(select(getProductsData));
+    this.sub$ = this.store.pipe(select(getSelectedProduct)).subscribe(product => this.product = product);
     const id = +this.route.snapshot.paramMap.get('productId');
 
     if (id) {

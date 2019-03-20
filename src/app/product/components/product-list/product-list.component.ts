@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 
 import { Product } from './../../models';
 import { CartService } from './../../../cart';
-import { AppState, ProductsState } from 'src/app/core/+store';
+import { AppState, getProductsData, getProductsError } from 'src/app/core/+store';
 import * as ProductsActions from './../../../core/+store/products/products.actions';
 
 @Component({
@@ -20,12 +20,13 @@ export class ProductListComponent implements OnInit {
     private store: Store<AppState>
   ) { }
 
-  productsState$: Observable<ProductsState>;
+  products$: Observable<ReadonlyArray<Product>>;
+  productsError$: Observable<Error | string>;
 
   ngOnInit() {
-    this.productsState$ = this.store.pipe(select('products'));
+    this.products$ = this.store.pipe(select(getProductsData));
+    this.productsError$ = this.store.pipe(select(getProductsError));
     this.store.dispatch(new ProductsActions.GetProducts());
-    console.log('Store: ', this.store);
   }
 
   onAddToCart(product: Product) {

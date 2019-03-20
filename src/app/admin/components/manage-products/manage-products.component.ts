@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AppState, ProductsState } from 'src/app/core/+store';
+import { AppState, ProductsState, getProductsData } from 'src/app/core/+store';
 import * as ProductsActions from './../../../core/+store/products/products.actions';
 import { Product } from 'src/app/product';
 
@@ -13,8 +13,7 @@ import { Product } from 'src/app/product';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
-  productsState$: Observable<ProductsState>;
-  products$: Observable<Array<Product>>;
+  products$: Observable<ReadonlyArray<Product>>;
 
   constructor(
     private store: Store<AppState>,
@@ -22,7 +21,7 @@ export class ManageProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.productsState$ = this.store.pipe(select('products'));
+    this.products$ = this.store.pipe(select(getProductsData));
     this.store.dispatch(new ProductsActions.GetProducts());
   }
 
