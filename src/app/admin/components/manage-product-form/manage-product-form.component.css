@@ -5,3 +5,7 @@ button {
 .form-wrapper {
   margin-top: 10px;
 }
+
+.error-message {
+  font-size: 0.9em;
+}

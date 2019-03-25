@@ -1,32 +1,37 @@
 <div class="row form-wrapper" *ngIf="product">
-  <form class="col s12" (ngSubmit)="onSaveProduct()" #form="ngForm">
+  <form
+    class="col s12"
+    novalidate
+    (ngSubmit)="onSaveProduct()"
+    [formGroup]="productForm"
+  >
     <div class="row">
       <div class="input-field col s6">
         <input
           id="id"
           type="text"
-          class="validate"
-          name="id"
-          required
-          [disabled]="product.id"
-          [(ngModel)]="product.id"
+          class="valid"
+          formControlName="id"
         />
         <label for="id">
-          <ng-container *ngIf="!product.id">Id</ng-container>
+          <ng-container *ngIf="productForm.get('id').value === ''">Id</ng-container>
         </label>
       </div>
+
       <div class="input-field col s6">
         <input
           id="name"
           type="text"
-          class="validate"
-          name="name"
-          required
-          [(ngModel)]="product.name"
+          [ngClass]="(productForm.get('name').touched || productForm.get('name').dirty) && productForm.get('name').invalid ? 'invalid' : 'valid'"
+          formControlName="name"
         />
         <label for="name">
-          <ng-container *ngIf="!product.name">Name</ng-container>
+          <ng-container *ngIf="productForm.get('name').value === ''">Name</ng-container>
         </label>
+        <span
+          *ngIf="(productForm.get('name').touched || productForm.get('name').dirty) && productForm.get('name').invalid"
+          class="error-message red-text"
+        >Please enter Product name</span>
       </div>
     </div>
     <div class="row">
@@ -34,87 +39,80 @@
         <input
           id="description"
           type="text"
-          class="validate"
-          name="description"
-          required
-          [(ngModel)]="product.description"
+          [ngClass]="(productForm.get('description').touched || productForm.get('description').dirty) && productForm.get('description').invalid ? 'invalid' : 'valid'"
+          formControlName="description"
         />
         <label for="description">
-          <ng-container *ngIf="!product.description">Description</ng-container>
+          <ng-container *ngIf="productForm.get('description').value === ''">Description</ng-container>
         </label>
+        <span
+          *ngIf="(productForm.get('description').touched || productForm.get('description').dirty) && productForm.get('description').invalid"
+          class="error-message red-text"
+        >Please enter Product description</span>
       </div>
-      <div class="input-field col s6">
+
+      <div class="input-field col s4">
         <input
           id="price"
           type="number"
-          class="validate"
-          name="price"
-          required
-          [(ngModel)]="product.price"
+          [ngClass]="(productForm.get('price').touched || productForm.get('price').dirty) && productForm.get('price').invalid ? 'invalid' : 'valid'"
+          formControlName="price"
         />
         <label for="price">
-          <ng-container *ngIf="!product.price">Price</ng-container>
+          <ng-container *ngIf="productForm.get('price').value === ''">Price</ng-container>
+        </label>
+        <span
+          *ngIf="(productForm.get('price').touched || productForm.get('price').dirty) && productForm.get('price').invalid"
+          class="error-message red-text"
+        >Please enter valid Product price</span>
+      </div>
+      <div class="input-field center col s2">
+        <label>
+          <input type="checkbox" formControlName="isAvailable" />
+          <span>In stock</span>
         </label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input
-          id="category"
-          type="text"
-          class="validate"
-          name="category"
-          required
-          [(ngModel)]="product.category"
-        />
-        <label for="category">
-          <ng-container *ngIf="!product.category">Category</ng-container>
-        </label>
+        <select formControlName="category" class="valid">
+          <option *ngFor="let category of categories" value="{{ category }}">{{ category }}</option>
+        </select>
+        <label>Category</label>
       </div>
-      <div class="input-field col s6">
-        <input
-          id="isAvailable"
-          type="text"
-          class="validate"
-          name="isAvailable"
-          required
-          [(ngModel)]="product.isAvailable"
-        />
-        <label for="isAvailable">
-          <ng-container *ngIf="product.isAvailable !== false && product.isAvailable !== true">Availability</ng-container>
-        </label>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            id="photo"
+            type="text"
+            class="valid"
+            formControlName="photo"
+          />
+          <label for="photo">
+            <ng-container *ngIf="productForm.get('photo').value === ''">Photo</ng-container>
+          </label>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <input
-          id="photo"
-          type="text"
-          class="validate"
-          name="photo"
-          [(ngModel)]="product.photo"
-        />
-        <label for="photo">
-          <ng-container *ngIf="!product.photo">Photo</ng-container>
-        </label>
-      </div>
-    </div>
+
     <div class="center">
-      <button type="submit" class="waves-effect waves-light btn-small center">
-        Save
+      <button
+        type="submit"
+        [disabled]="!productForm.valid"
+        class="waves-effect waves-light btn-small center"
+      >Save
       </button>
       <button
         class="waves-effect waves-light btn-small center yellow"
         (click)="onGoBack()"
-      >
-        Cancel
+      >Cancel
       </button>
       <button
+        [disabled]="!productId"
         type="button"
         class="waves-effect waves-light btn-small center red"
         (click)="onRemove()"
-      >
-        Remove
+      >Remove
       </button>
     </div>
   </form>

@@ -30,6 +30,7 @@ export class AuthService {
      } else {
       return of(false).pipe(
         tap(() => {
+          this.dispatchFalse();
           this.isLoggedIn = false;
         })
       );
@@ -44,5 +45,9 @@ export class AuthService {
 
   dispatchData() {
     this.channel.next(true);
+  }
+
+  dispatchFalse() {
+    this.channel.next(false);
   }
 }

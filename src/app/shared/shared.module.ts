@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { ClickDirective, HoverDirective } from './directives';
 import { OrderByPipe } from './pipes';
+import { AsyncLoginValidatorDirective } from '../validators';
 
 @NgModule({
   declarations: [
     HoverDirective,
     ClickDirective,
-    OrderByPipe
+    OrderByPipe,
+    AsyncLoginValidatorDirective
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import { OrderByPipe } from './pipes';
   exports: [
     HoverDirective,
     ClickDirective,
-    OrderByPipe
+    OrderByPipe,
+    AsyncLoginValidatorDirective
   ]
 })
 export class SharedModule { }

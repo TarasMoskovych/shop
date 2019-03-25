@@ -1,21 +1,62 @@
 <div class="wrapper">
   <div class="row">
-    <form class="col s12">
-      <div class="row">
+    <form class="col s12" novalidate #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <div class="row" #loginGoup="ngModelGroup" ngModelGroup appAsyncLoginValidator>
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <input #login id="login" type="text" class="validate" />
-          <label for="login">First Name</label>
+          <input
+            id="login"
+            type="text"
+            (input)="onInput()"
+            [ngClass]="loginGoup.hasError('asyncEmailInvalid') || (nameVar.touched || nameVar.dirty) && nameVar.invalid ? 'invalid' : 'valid'"
+            minlength="3"
+            required
+            [(ngModel)]="login.name"
+            name="nameControl"
+            #nameVar="ngModel"
+          />
+          <label for="login">Name</label>
+          <span
+            *ngIf="(nameVar.touched || nameVar.dirty) && nameVar.invalid"
+            class="error-message red-text"
+          >Please enter valid Name</span>
+          <span
+            *ngIf="loginGoup.hasError('asyncEmailInvalid')"
+            class="error-message red-text"
+          >Please enter valid Admin name</span>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">lock</i>
-          <input #password id="password" type="password" class="validate" />
+          <input
+            id="password"
+            type="password"
+            (input)="onInput()"
+            [ngClass]="loginGoup.hasError('asyncEmailInvalid') || (passwordVar.touched || passwordVar.dirty) && passwordVar.invalid ? 'invalid' : 'valid'"
+            minlength="3"
+            required
+            [(ngModel)]="login.password"
+            name="passwordControl"
+            #passwordVar="ngModel"
+          />
           <label for="password">Password</label>
+          <span
+            *ngIf="(passwordVar.touched || passwordVar.dirty) && passwordVar.invalid"
+            class="error-message red-text"
+          >Please enter valid Password</span>
+          <span
+            *ngIf="loginGoup.hasError('asyncEmailInvalid')"
+            class="error-message red-text"
+          >Please enter valid Admin password</span>
         </div>
       </div>
     </form>
   </div>
   <div class="center">
-    <a class="waves-effect waves-light btn-small center" (click)="onLogin(login.value, password.value)">Login</a>
+    <div *ngIf="!validData" class="invalid-data red-text">Please enter valid credentials</div>
+    <button
+      (click)="onLogin()"
+      [disabled]="!loginForm.valid"
+      class="waves-effect waves-light btn-small center"
+    >Login</button>
   </div>
 </div>

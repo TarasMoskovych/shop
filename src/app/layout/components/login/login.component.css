@@ -5,3 +5,12 @@
   padding: 15px;
   margin: 10% auto 0;
 }
+
+.error-message {
+  font-size: 0.9em;
+  margin-left: 42px;
+}
+
+.invalid-data {
+  margin-bottom: 20px;
+}
